@@ -73,15 +73,7 @@ export const FullScreenScrollFX = ({ sections }) => {
       ))}
 
       {/* SIMPLE NAV (for testing) */}
-      <div className="fx-dots">
-        {sections.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setActiveIndex(i)}
-            className={i === activeIndex ? 'active' : ''}
-          />
-        ))}
-      </div>
+      {/* Dot navigation removed as requested */}
 
      
     </div>

@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { X, Send, User, Minus, Calendar, FileText, Headphones, Zap, Battery, Gauge, CreditCard } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { debounce } from '../../utils/helpers';
 
 // ===== THEME CONFIGURATION =====
 const theme = {
@@ -155,12 +156,14 @@ const ChatBot = () => {
     }
   }, [isOpen, isMinimized]);
 
-  // Filter suggestions based on input
-  const filteredSuggestions = suggestions.filter(s => 
-    s.toLowerCase().includes(input.toLowerCase()) && input.length > 0
+  // Memoized filtered suggestions for performance
+  const filteredSuggestions = useMemo(() =>
+    suggestions.filter(s => 
+      s.toLowerCase().includes(input.toLowerCase()) && input.length > 0
+    ), [input]
   );
 
-  const handleQuickReply = (action) => {
+  const handleQuickReply = useCallback((action) => {
     const responses = {
       'test-ride': "Great! I can help you book a test ride. Please share your city and preferred date.",
       'emi': "Here's our EMI options:\n• City Cruiser: ₹3,499/month\n• Sport Pro: ₹4,999/month\n• Premium Elite: ₹5,999/month\n\nAll with 0% interest for 12 months! 🎉",
@@ -172,7 +175,7 @@ const ChatBot = () => {
       { role: 'user', content: responses[action].split('\n')[0], timestamp: new Date() },
       { role: 'assistant', content: responses[action], timestamp: new Date() }
     ]);
-  };
+  }, []);
 
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
@@ -238,7 +241,7 @@ const ChatBot = () => {
     }
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = useCallback((e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       if (filteredSuggestions.length === 1) {
@@ -248,13 +251,13 @@ const ChatBot = () => {
         sendMessage();
       }
     }
-  };
+  }, [filteredSuggestions, sendMessage]);
 
-  // Message animation variants
-  const messageVariants = {
-    hidden: { opacity: 0, y: 20, scale: 0.95 },
-    visible: { opacity: 1, y: 0, scale: 1 }
-  };
+  // Message animation variants - reduced for mobile performance
+  const messageVariants = useMemo(() => ({
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0 }
+  }), []);
 
   return (
     <>
@@ -265,8 +268,8 @@ const ChatBot = () => {
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
             className="fixed bottom-6 right-6 z-50 group"
           >
@@ -284,20 +287,19 @@ const ChatBot = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ 
               opacity: 1, 
-              y: 0, 
-              scale: 1,
+              y: 0,
               height: isMinimized ? '70px' : '600px'
             }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ type: "spring", damping: 25 }}
-            className="fixed bottom-6 right-6 z-50 w-[380px] sm:w-96 bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-white/30"
-            style={{ backdropFilter: 'blur(16px)' }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ type: "tween", duration: 0.2 }}
+            className="fixed bottom-2 right-2 left-2 mx-auto z-50 w-full max-w-[380px] sm:bottom-6 sm:right-6 sm:left-auto sm:mx-0 sm:w-96 bg-white/95 sm:backdrop-blur-xl rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-white/30"
+            style={{ backdropFilter: window.innerWidth > 640 ? 'blur(16px)' : 'none', maxHeight: isMinimized ? '70px' : '90vh' }}
           >
             {/* Premium Header */}
-            <div className="bg-gradient-to-r from-[#0FB9B1] to-[#0A6F6B] p-4 flex items-center justify-between">
+            <div className="bg-gradient-to-r from-[#0FB9B1] to-[#0A6F6B] p-3 sm:p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <ScootyAssistantAvatar isTyping={isLoading} />
                 <div>
@@ -332,7 +334,7 @@ const ChatBot = () => {
             {!isMinimized && (
               <>
                 {/* Messages Area */}
-                <div className="flex-1 overflow-y-auto p-4 bg-gradient-to-b from-[#E6FFFA]/30 to-white/50">
+                <div className="flex-1 overflow-y-auto p-2 sm:p-4 bg-gradient-to-b from-[#E6FFFA]/30 to-white/50">
                   <div className="space-y-4">
                     <AnimatePresence>
                       {messages.map((message, index) => (
@@ -341,7 +343,7 @@ const ChatBot = () => {
                           variants={messageVariants}
                           initial="hidden"
                           animate="visible"
-                          transition={{ delay: index * 0.1 }}
+                          transition={{ duration: 0.2, delay: Math.min(index * 0.05, 0.3) }}
                           className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                         >
                           <div className={`flex gap-2 max-w-[85%] ${message.role === 'user' ? 'flex-row-reverse' : ''}`}>
@@ -408,7 +410,7 @@ const ChatBot = () => {
                 </div>
 
                 {/* CTA Buttons */}
-                <div className="px-4 py-2 bg-white/50 backdrop-blur-sm border-t border-white/30 flex gap-2">
+                <div className="px-2 py-2 sm:px-4 bg-white/50 backdrop-blur-sm border-t border-white/30 flex gap-2">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -436,7 +438,7 @@ const ChatBot = () => {
                 </div>
 
                 {/* Premium Input Area */}
-                <div className="p-4 bg-white/80 backdrop-blur-sm border-t border-white/30">
+                <div className="p-2 sm:p-4 bg-white/80 backdrop-blur-sm border-t border-white/30">
                   <div className="relative">
                     <div className="flex gap-2">
                       <input
@@ -444,13 +446,16 @@ const ChatBot = () => {
                         type="text"
                         value={input}
                         onChange={(e) => {
-                          setInput(e.target.value);
-                          setShowSuggestions(true);
+                          const value = e.target.value;
+                          setInput(value);
+                          if (value.length > 0) {
+                            setShowSuggestions(true);
+                          }
                         }}
                         onKeyPress={handleKeyPress}
                         onFocus={() => setShowSuggestions(true)}
                         placeholder="Ask about test rides, EMI, range..."
-                        className="flex-1 px-4 py-3 bg-white border border-[#0FB9B1]/20 rounded-xl focus:outline-none focus:border-[#0FB9B1] focus:ring-2 focus:ring-[#0FB9B1]/20 text-sm pr-12"
+                        className="flex-1 px-3 py-2 sm:px-4 sm:py-3 bg-white border border-[#0FB9B1]/20 rounded-xl focus:outline-none focus:border-[#0FB9B1] focus:ring-2 focus:ring-[#0FB9B1]/20 text-sm pr-12"
                         disabled={isLoading}
                       />
                       <motion.button
