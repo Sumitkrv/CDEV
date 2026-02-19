@@ -1,0 +1,228 @@
+.fx-wrapper {
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.fx-section {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  width: 100%;
+  height: 100%;
+}
+
+.fx-section.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* DESKTOP BACKGROUND */
+.fx-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* MOBILE MEDIA CONTAINER */
+.fx-mobile-media {
+  position: relative;
+  height: 100svh;        /* full screen */
+  width: 100%;
+  overflow: hidden;      /* crop background only */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0B2C2F;   /* brand teal bg */
+}
+
+/* IMAGE ITSELF */
+.fx-mobile-media img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;  /* NEVER cut product */
+  transform: scale(1.08); /* 🔥 magic sauce */
+}
+
+/* TEXT */
+.fx-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.fx-content h1 {
+  font-size: clamp(2rem, 6vw, 4rem);
+  margin: 0.5rem 0;
+}
+
+.fx-left,
+.fx-right {
+  opacity: 0.8;
+}
+
+/* DOT NAV */
+.fx-dots {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 100;
+}
+
+.fx-dots button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.fx-dots button.active {
+  background: white;
+}
+
+/* ARROW NAVIGATION */
+.fx-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.fx-arrow:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.fx-arrow-left {
+  left: 24px;
+}
+
+.fx-arrow-right {
+  right: 24px;
+}
+
+@media (max-width: 768px) {
+  .fx-arrow {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .fx-arrow-left {
+    left: 12px;
+  }
+  
+  .fx-arrow-right {
+    right: 12px;
+  }
+}
+
+/* CTA BUTTONS */
+.fx-cta-buttons {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 16px;
+  z-index: 100;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 20px;
+  width: 100%;
+  max-width: 650px;
+  pointer-events: all;
+}
+
+.fx-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.fx-btn-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.fx-btn-primary {
+  background: #1EE3B5;
+  color: #0B2C2F;
+}
+
+.fx-btn-primary:hover {
+  background: #0FB9A6;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(30, 227, 181, 0.3);
+}
+
+.fx-btn-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.fx-btn-secondary:hover {
+  background: white;
+  color: #0B2C2F;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .fx-cta-buttons {
+    bottom: 60px;
+    gap: 12px;
+  }
+  
+  .fx-btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+  
+  .fx-btn-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
