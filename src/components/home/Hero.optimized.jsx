@@ -470,21 +470,17 @@ function DesktopHero({ images, onImageClick }) {
 // --- Main Hero Component ---
 const Hero = () => {
     const navigate = useNavigate();
-    // Initialize with proper mobile detection to prevent desktop flash
-    const [isMobile, setIsMobile] = useState(() => {
-        if (typeof window !== 'undefined') {
-            return window.innerWidth < MOBILE_BREAKPOINT || isTouchDevice();
-        }
-        return false;
-    });
+    const [isMobile, setIsMobile] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
-    // Update mobile state on resize
+    // Detect mobile on mount (avoid hydration mismatch)
     useEffect(() => {
         const checkMobile = () => {
             setIsMobile(window.innerWidth < MOBILE_BREAKPOINT || isTouchDevice());
         };
+        
+        checkMobile();
         
         let resizeTimer;
         const handleResize = () => {

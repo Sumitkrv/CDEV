@@ -177,7 +177,7 @@ const ChatBot = () => {
     ]);
   }, []);
 
-  const sendMessage = useCallback(async () => {
+  const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
 
     const userMessage = {
@@ -186,24 +186,17 @@ const ChatBot = () => {
       timestamp: new Date()
     };
 
-    const currentInput = input;
     setMessages(prev => [...prev, userMessage]);
     setInput('');
     setIsLoading(true);
     setShowSuggestions(false);
 
     try {
-      // Check if API key exists
-      const apiKey = import.meta.env.VITE_CHATBOT_API_KEY;
-      if (!apiKey) {
-        throw new Error('API key not configured');
-      }
-
       const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`,
+          'Authorization': `Bearer ${import.meta.env.VITE_CHATBOT_API_KEY}`,
           'HTTP-Referer': window.location.origin,
           'X-Title': 'CDEV Assistant'
         },
@@ -220,7 +213,7 @@ const ChatBot = () => {
             })),
             {
               role: 'user',
-              content: currentInput
+              content: input
             }
           ],
           max_tokens: 512,
@@ -228,16 +221,7 @@ const ChatBot = () => {
         })
       });
 
-      if (!response.ok) {
-        throw new Error(`API error: ${response.status} ${response.statusText}`);
-      }
-
       const data = await response.json();
-      
-      if (!data.choices || !data.choices[0] || !data.choices[0].message) {
-        throw new Error('Invalid API response format');
-      }
-
       const assistantMessage = {
         role: 'assistant',
         content: data.choices[0].message.content,
@@ -255,7 +239,7 @@ const ChatBot = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [input, isLoading, messages]);
+  };
 
   const handleKeyPress = useCallback((e) => {
     if (e.key === 'Enter' && !e.shiftKey) {

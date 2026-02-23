@@ -2,28 +2,20 @@ import { motion } from 'framer-motion';
 import { MessageCircle, Zap } from 'lucide-react';
 import ContactForm from '../components/contact/ContactForm';
 import ContactInfo from '../components/contact/ContactInfo';
-import MapEmbed from '../components/contact/MapEmbed';
 import MiniFAQ from '../components/contact/MiniFAQ';
 
 const Contact = () => {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-[#0D9488] via-[#0D9488] to-[#14B8A6] overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-white/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
-        </div>
-
-        {/* Grid Pattern Overlay */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
-            backgroundSize: '50px 50px'
-          }} />
-        </div>
+      <section className="relative min-h-[70vh] flex items-center justify-center bg-[#0D9488] overflow-hidden">
+        {/* Background texture */}
+        <div className="absolute inset-0 opacity-10" style={{
+          backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }} />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-3xl -mr-64 -mt-64" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-3xl -ml-48 -mb-48" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
@@ -37,10 +29,10 @@ const Contact = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full mb-8"
+                className="inline-flex items-center gap-2 px-5 py-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full mb-8"
               >
                 <MessageCircle className="w-4 h-4 text-white" />
-                <span className="text-white text-sm font-semibold tracking-wide">
+                <span className="text-white text-xs font-bold tracking-[0.2em] uppercase">
                   WE'RE HERE TO HELP
                 </span>
               </motion.div>
@@ -50,7 +42,7 @@ const Contact = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
+                className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-5 leading-tight tracking-tight"
               >
                 Let's Connect
               </motion.h1>
@@ -60,30 +52,28 @@ const Contact = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed max-w-2xl mx-auto"
+                className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-2xl mx-auto"
               >
                 Have questions about our electric vehicles? Our team is ready to assist you with expert guidance and support.
               </motion.p>
 
-              {/* Features */}
+              {/* Feature pills */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="flex flex-wrap items-center justify-center gap-6 md:gap-8"
+                className="flex flex-wrap items-center justify-center gap-3"
               >
-                <div className="flex items-center gap-2 text-white/90">
-                  <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                  <span className="text-sm md:text-base font-medium">24-Hour Response Time</span>
-                </div>
-                <div className="flex items-center gap-2 text-white/90">
-                  <div className="w-2 h-2 rounded-full bg-white animate-pulse" style={{ animationDelay: '0.5s' }} />
-                  <span className="text-sm md:text-base font-medium">Expert Support Team</span>
-                </div>
-                <div className="flex items-center gap-2 text-white/90">
-                  <div className="w-2 h-2 rounded-full bg-white animate-pulse" style={{ animationDelay: '1s' }} />
-                  <span className="text-sm md:text-base font-medium">Multiple Locations</span>
-                </div>
+                {[
+                  { icon: '⏱', label: '24-Hour Response Time' },
+                  { icon: '🎯', label: 'Expert Support Team' },
+                  { icon: '📍', label: 'Multiple Locations' },
+                ].map(({ icon, label }, i) => (
+                  <div key={label} className="flex items-center gap-2.5 bg-white/15 backdrop-blur-sm border border-white/20 px-5 py-2.5 rounded-full">
+                    <span className="text-sm">{icon}</span>
+                    <span className="text-white font-semibold text-sm">{label}</span>
+                  </div>
+                ))}
               </motion.div>
             </motion.div>
           </div>
@@ -100,7 +90,6 @@ const Contact = () => {
       {/* Contact Sections */}
       <ContactForm />
       <ContactInfo />
-      <MapEmbed />
       <MiniFAQ />
     </div>
   );

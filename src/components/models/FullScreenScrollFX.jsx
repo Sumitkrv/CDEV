@@ -63,19 +63,24 @@ export const FullScreenScrollFX = ({ sections }) => {
             </div>
           )}
 
-          {/* TEXT OVERLAY */}
-          <div className="fx-content">
-            <span className="fx-left">{section.leftLabel}</span>
-            <h1>{section.title}</h1>
-            <span className="fx-right">{section.rightLabel}</span>
-          </div>
         </section>
       ))}
 
-      {/* SIMPLE NAV (for testing) */}
-      {/* Dot navigation removed as requested */}
-
-     
+      {/* Arrow Navigation */}
+      <button
+        onClick={handlePrev}
+        className="fx-nav-btn fx-nav-prev"
+        aria-label="Previous"
+      >
+        <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
+      </button>
+      <button
+        onClick={handleNext}
+        className="fx-nav-btn fx-nav-next"
+        aria-label="Next"
+      >
+        <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+      </button>
     </div>
   );
 };

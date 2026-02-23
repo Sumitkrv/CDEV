@@ -36,44 +36,44 @@ const Timeline = () => {
   ];
 
   return (
-    <section className="relative py-24 md:py-32 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+    <section className="relative py-24 md:py-32 bg-gradient-to-br from-[#0D9488] via-[#0a7a70] to-[#1A3A36] overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-r from-[#0D9488]/5 to-transparent rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-white/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header Section */}
         <div className="max-w-3xl mx-auto text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#0D9488]/10 rounded-full mb-6">
-            <span className="w-2 h-2 bg-[#0D9488] rounded-full animate-pulse" />
-            <span className="text-[#0D9488] text-sm font-semibold tracking-wide">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/15 backdrop-blur-sm rounded-full mb-6 border border-white/20">
+            <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
+            <span className="text-white text-sm font-semibold tracking-wide">
               WHY CHOOSE CD
             </span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1A3A36] mb-6 leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
             Why Choose{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0D9488] to-[#0D9488]/70">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
               CD
             </span>
           </h2>
           
-          <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-white/75 leading-relaxed max-w-2xl mx-auto">
             Choosing CD means choosing a brand that values trust over trends.
             We are built on clarity, commitment, and consistency — delivering 
             solutions that are reliable, transparent, and future-focused.
           </p>
         </div>
 
-        {/* Features Grid */}
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Features — single horizontal scrollable row */}
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-nowrap overflow-x-auto gap-5 pb-4 scrollbar-hide">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="group relative bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                className="group relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 hover:-translate-y-1 flex-shrink-0 w-[220px]"
               >
                 {/* Gradient border effect on hover */}
                 <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
@@ -84,10 +84,10 @@ const Timeline = () => {
                 </div>
                 
                 {/* Content */}
-                <h3 className="text-xl font-bold text-[#1A3A36] mb-2 group-hover:text-[#0D9488] transition-colors">
+                <h3 className="text-base font-bold text-white mb-2 group-hover:text-white/80 transition-colors leading-snug">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-white/65 text-xs leading-relaxed">
                   {feature.description}
                 </p>
 
@@ -95,26 +95,20 @@ const Timeline = () => {
                 <div className={`absolute bottom-0 left-6 right-6 h-0.5 bg-gradient-to-r ${feature.color} scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`} />
               </div>
             ))}
-
-            {/* Centered last item for odd number of features */}
-            {features.length % 2 !== 0 && (
-              <div className="hidden lg:block lg:col-span-3">
-                <div className="flex justify-center">
-                  <div className="w-1/3">
-                    {/* This empty div helps center the last item */}
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
         </div>
 
+        <style>{`
+          .scrollbar-hide::-webkit-scrollbar { display: none; }
+          .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        `}</style>
+
         {/* Bottom CTA (optional - can be removed if not needed) */}
         <div className="text-center mt-16">
-          <div className="inline-flex items-center gap-2 text-sm text-gray-500">
-            <span className="w-1 h-1 bg-[#0D9488] rounded-full" />
+          <div className="inline-flex items-center gap-2 text-sm text-white/60">
+            <span className="w-1 h-1 bg-white/60 rounded-full" />
             <span>Built on transparency and trust</span>
-            <span className="w-1 h-1 bg-[#0D9488] rounded-full" />
+            <span className="w-1 h-1 bg-white/60 rounded-full" />
           </div>
         </div>
       </div>

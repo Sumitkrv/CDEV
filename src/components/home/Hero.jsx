@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 // --- Performance Constants ---
 const MOBILE_BREAKPOINT = 768;
 const TABLET_BREAKPOINT = 1366; // Include iPad Pro (1024-1366px)
-const DESKTOP_TOTAL_IMAGES = 20;
-const TABLET_TOTAL_IMAGES = 20; // Show all images
-const MOBILE_TOTAL_IMAGES = 20; // Show all 20 images
+const DESKTOP_TOTAL_IMAGES = 3;
+const TABLET_TOTAL_IMAGES = 3; // Show all images
+const MOBILE_TOTAL_IMAGES = 3; // Show all 3 images
 const MAX_SCROLL = 3000;
 
 // --- Mobile Performance Flags ---
@@ -17,26 +17,9 @@ const MOBILE_REDUCE_BLUR = true; // Reduce backdrop blur on mobile
 
 // --- Images Array ---
 const IMAGES = [
-    "/CD_EV_compressed/scooter.jpg",
-    "/CD_EV_compressed/2.jpg",
-    "/CD_EV_compressed/3.jpg",
-    "/CD_EV_compressed/CD_EV15533.jpg",
-    "/CD_EV_compressed/CD_EV15544.jpg",
-    "/CD_EV_compressed/CD_EV15555.jpg",
-    "/CD_EV_compressed/CD_EV15577.jpg",
-    "/CD_EV_compressed/CD_EV15611.jpg",
-    "/CD_EV_compressed/CD_EV15650.jpg",
-    "/CD_EV_compressed/CD_EV15705.jpg",
-    "/CD_EV_compressed/CD_EV15730.jpg",
-    "/CD_EV_compressed/CD_EV15750.jpg",
-    "/CD_EV_compressed/CD_EV15783.jpg",
-    "/CD_EV_compressed/CD_EV15828.jpg",
-    "/CD_EV_compressed/CD_EV15856.jpg",
-    "/CD_EV_compressed/CD_EV15868.jpg",
-    "/CD_EV_compressed/CD_EV15890.jpg",
-    "/CD_EV_compressed/CD_EV15914.jpg",
-    "/CD_EV_compressed/CD_EV15919.jpg",
-    "/CD_EV_compressed/CD_EV15923.jpg",
+    "/CD EV new/CD 2.jpg",
+    "/CD EV new/CD 3.jpg",
+    "/CD EV new/CD 4.jpg",
 ];
 
 // --- Utility Functions ---
@@ -132,13 +115,13 @@ function DesktopFlipCard({ src, index, target, onClick }) {
 
                 {/* Back Face */}
                 <div
-                    className="absolute inset-0 h-full w-full overflow-hidden rounded-xl shadow-lg bg-gradient-to-br from-blue-600 to-blue-900 flex flex-col items-center justify-center p-4 border-2 border-blue-400 hover:border-blue-300 transition-colors"
+                    className="absolute inset-0 h-full w-full overflow-hidden rounded-xl shadow-lg bg-gradient-to-br from-[#0D9488] to-[#1A3A36] flex flex-col items-center justify-center p-4 border-2 border-[#14B8A6] hover:border-teal-300 transition-colors"
                     style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
                 >
                     <div className="text-center">
-                        <p className="text-[8px] font-bold text-blue-200 uppercase tracking-widest mb-1">View</p>
+                        <p className="text-[8px] font-bold text-teal-200 uppercase tracking-widest mb-1">View</p>
                         <p className="text-xs font-medium text-white">Details</p>
-                        <div className="mt-2 text-blue-300">
+                        <div className="mt-2 text-teal-300">
                             <svg className="w-4 h-4 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                             </svg>
@@ -176,7 +159,7 @@ function MobileHero({ images, onImageClick, isTablet }) {
                         transition={{ duration: 0.6 }}
                     >
                         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
-                            Drive the Future with <span className="text-blue-400">CDEV</span>
+                            Drive the Future with <span className="text-[#14B8A6]">CDEV</span>
                         </h1>
                         <p className="text-gray-300 text-base md:text-lg mb-8">
                             Experience Electric Mobility
@@ -191,15 +174,15 @@ function MobileHero({ images, onImageClick, isTablet }) {
                         className="flex justify-center gap-8 md:gap-12"
                     >
                         <div className="text-center">
-                            <div className="text-3xl md:text-4xl font-bold text-blue-400">100+</div>
+                            <div className="text-3xl md:text-4xl font-bold text-[#14B8A6]">100+</div>
                             <div className="text-xs md:text-sm text-gray-400 mt-1">km Range</div>
                         </div>
                         <div className="text-center">
-                            <div className="text-3xl md:text-4xl font-bold text-blue-400">65</div>
+                            <div className="text-3xl md:text-4xl font-bold text-[#14B8A6]">65</div>
                             <div className="text-xs md:text-sm text-gray-400 mt-1">km/h Speed</div>
                         </div>
                         <div className="text-center">
-                            <div className="text-3xl md:text-4xl font-bold text-blue-400">0%</div>
+                            <div className="text-3xl md:text-4xl font-bold text-[#14B8A6]">0%</div>
                             <div className="text-xs md:text-sm text-gray-400 mt-1">Emissions</div>
                         </div>
                     </motion.div>
@@ -273,24 +256,18 @@ function MobileHero({ images, onImageClick, isTablet }) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}
-                    className="flex flex-col sm:flex-row items-center gap-4 mt-8"
+                    className="flex flex-col sm:row-row items-center gap-4 mt-12"
                 >
                     <button 
                         onClick={() => window.location.href = '/models'}
-                        className="flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary-dark text-dark-main rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg"
+                        className="flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#0D9488] to-[#14B8A6] text-white rounded-2xl font-bold transition-all duration-300 hover:scale-105 shadow-xl"
                     >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
                         View All Models
                     </button>
                     <button 
                         onClick={() => window.location.href = '/contact'}
-                        className="flex items-center gap-2 px-6 py-3 bg-transparent border-2 border-white text-white hover:bg-white hover:text-dark-main rounded-xl font-semibold transition-all duration-300 hover:scale-105"
+                        className="flex items-center gap-2 px-8 py-4 bg-transparent border-2 border-[#14B8A6] text-[#14B8A6] hover:bg-[#14B8A6] hover:text-white rounded-2xl font-bold transition-all duration-300 hover:scale-105"
                     >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
                         Book Test Ride
                     </button>
                 </motion.div>
@@ -450,9 +427,9 @@ function DesktopHero({ images, onImageClick }) {
                         initial={{ opacity: 0, y: 20 }}
                         animate={introPhase === "circle" && morphValue < 0.5 ? { opacity: 1 - morphValue * 2, y: 0 } : { opacity: 0 }}
                         transition={{ duration: 1 }}
-                        className="text-4xl font-medium tracking-tight text-gray-100 bg-dark-main/80 backdrop-blur-sm px-6 py-3 rounded-2xl shadow-lg"
+                        className="text-4xl font-bold tracking-tight text-white bg-[#1A3A36]/80 backdrop-blur-md px-8 py-4 rounded-2xl shadow-2xl"
                     >
-                        Drive the Future with <span className="text-blue-400">CDEV</span>
+                        Drive the Future with <span className="text-[#14B8A6]">CDEV</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0 }}
@@ -469,12 +446,15 @@ function DesktopHero({ images, onImageClick }) {
                     style={{ opacity: contentOpacity, y: contentY }}
                     className="absolute top-[10%] z-50 flex flex-col items-center justify-center text-center pointer-events-none px-4"
                 >
-                    <h2 className="text-5xl font-semibold text-gray-100 tracking-tight mb-4 bg-dark-main/80 backdrop-blur-md px-6 py-4 rounded-2xl shadow-2xl">
-                        Experience Electric Mobility
+                    <span className="inline-block px-4 py-2 bg-[#0D9488]/20 text-[#14B8A6] text-sm font-semibold rounded-full mb-6 uppercase tracking-wider backdrop-blur-md">
+                        The Future is Electric
+                    </span>
+                    <h2 className="text-6xl font-bold text-white tracking-tight mb-6">
+                        Experience <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0D9488] to-[#14B8A6]">Electric</span> Mobility
                     </h2>
-                    <p className="text-base text-gray-300 max-w-lg leading-relaxed bg-dark-main/70 backdrop-blur-md px-5 py-3 rounded-xl shadow-lg">
-                        Discover our cutting-edge electric scooters.<br />
-                        Zero emissions, maximum performance, unlimited possibilities.
+                    <p className="text-lg text-gray-300 max-w-xl leading-relaxed bg-[#1A3A36]/40 backdrop-blur-md px-8 py-5 rounded-[2rem] border border-white/10 shadow-2xl">
+                        Discover the next generation of urban transportation.<br />
+                        High-performance engineering meets sustainable design.
                     </p>
                 </motion.div>
 
@@ -732,10 +712,10 @@ const Hero = () => {
                                             closeModal();
                                             navigate('/about');
                                         }}
-                                        className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-full font-semibold transition-colors inline-flex items-center gap-2"
+                                        className="px-8 py-3 bg-gradient-to-r from-[#0D9488] to-[#14B8A6] hover:shadow-emerald-500/25 shadow-lg text-white rounded-full font-bold transition-all inline-flex items-center gap-2 transform hover:scale-105"
                                     >
                                         Learn More
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                                         </svg>
                                     </button>

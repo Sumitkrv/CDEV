@@ -58,186 +58,58 @@ const WhyEV = () => {
   };
 
   return (
-    <section className="relative bg-gradient-to-b from-dark-main via-dark-soft to-dark-main py-24 lg:py-32 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="relative py-24 lg:py-32 overflow-hidden bg-white">
+      {/* Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#F0FDFA] via-white to-[#F0FDFA]" />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16 lg:mb-20"
+          className="text-center mb-16 lg:mb-20 max-w-3xl mx-auto"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-100 mb-4">
-            Why Choose <span className="text-blue-400">Electric?</span>
+          <span className="inline-block px-4 py-2 bg-[#0D9488]/10 text-[#0D9488] text-sm font-semibold rounded-full mb-6 uppercase tracking-wider">
+            Benefits
+          </span>
+          <h2 className="text-4xl lg:text-6xl font-black text-gray-900 mb-6 leading-tight">
+            Why Choose
+            <span className="inline-block mx-3 text-transparent bg-clip-text bg-gradient-to-r from-[#0D9488] to-[#14B8A6]">
+              Electric?
+            </span>
           </h2>
-          <p className="text-gray-300 text-base lg:text-lg max-w-2xl mx-auto">
-            The smarter, cleaner, and more affordable way to move.
+          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto font-medium">
+            Join the revolution of smarter, cleaner, and more affordable urban mobility.
           </p>
         </motion.div>
 
-        <div className="relative max-w-6xl mx-auto">
-          <div className="hidden lg:block relative">
-            <div className="grid grid-cols-12 gap-6 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="col-span-4"
-              >
-                <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 hover:shadow-xl hover:border-blue-400/30 transition-all duration-300 group">
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 transition-all duration-300 group-hover:bg-blue-100">
-                    {React.createElement(benefits[0].icon, { className: "h-6 w-6 text-blue-500", strokeWidth: 2 })}
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
-                    {benefits[0].title}
-                  </h3>
-                  <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
-                    {benefits[0].description}
-                  </p>
-                </div>
-              </motion.div>
-
-              <div className="col-span-4 row-span-2 flex items-center justify-center">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="relative w-full"
-                >
-                  <div className="relative overflow-hidden rounded-3xl shadow-2xl aspect-square">
-                    <img
-                      src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
-                      alt="Electric Scooter"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-br from-gray-900/40 via-transparent to-blue-400/10" />
-                  </div>
-                </motion.div>
-              </div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="col-span-4"
-              >
-                <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 hover:shadow-xl hover:border-blue-400/30 transition-all duration-300 group">
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 transition-all duration-300 group-hover:bg-blue-100">
-                    {React.createElement(benefits[1].icon, { className: "h-6 w-6 text-blue-500", strokeWidth: 2 })}
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
-                    {benefits[1].title}
-                  </h3>
-                  <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
-                    {benefits[1].description}
-                  </p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="col-span-4"
-              >
-                <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 hover:shadow-xl hover:border-blue-400/30 transition-all duration-300 group">
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 transition-all duration-300 group-hover:bg-blue-100">
-                    {React.createElement(benefits[2].icon, { className: "h-6 w-6 text-blue-500", strokeWidth: 2 })}
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
-                    {benefits[2].title}
-                  </h3>
-                  <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
-                    {benefits[2].description}
-                  </p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="col-span-4"
-              >
-                <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 hover:shadow-xl hover:border-blue-400/30 transition-all duration-300 group">
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 transition-all duration-300 group-hover:bg-blue-100">
-                    {React.createElement(benefits[3].icon, { className: "h-6 w-6 text-blue-500", strokeWidth: 2 })}
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
-                    {benefits[3].title}
-                  </h3>
-                  <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
-                    {benefits[3].description}
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-
-          <div className="lg:hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {benefits.map((benefit, index) => (
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative w-full mb-12"
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group relative bg-white/70 backdrop-blur-sm p-10 rounded-[2.5rem] border border-[#F0FDFA] hover:border-[#0D9488]/30 hover:shadow-2xl hover:shadow-[#0D9488]/10 transition-all duration-500 overflow-hidden"
             >
-              <div className="relative overflow-hidden rounded-3xl shadow-2xl aspect-square">
-                <img
-                  src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
-                  alt="Electric Scooter"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-[#132F39]/20 via-transparent to-[#1EE3B5]/10" />
+              {/* Card Background Accent */}
+              <div className="absolute -right-4 -top-4 w-24 h-24 bg-[#0D9488]/5 rounded-full blur-2xl group-hover:bg-[#0D9488]/10 transition-colors" />
+              
+              <div className="relative z-10">
+                <div className="mb-8 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-[#0D9488]/10 text-[#0D9488] transition-all duration-500 group-hover:scale-110 group-hover:bg-[#0D9488] group-hover:text-white group-hover:rotate-6">
+                  {benefit.icon && React.createElement(benefit.icon, { className: "h-8 w-8", strokeWidth: 2.5 })}
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-[#0D9488] transition-colors">
+                  {benefit.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed font-medium">
+                  {benefit.description}
+                </p>
               </div>
             </motion.div>
-
-            {benefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="w-full mb-8"
-              >
-                <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 hover:shadow-xl hover:border-blue-400/30 transition-all duration-300 group">
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 transition-all duration-300 group-hover:bg-blue-100">
-                    <benefit.icon className="h-6 w-6 text-blue-500" strokeWidth={2} />
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
-                    {benefit.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-center mt-12 lg:mt-16"
-          >
-            <Link to="/faq">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center px-10 py-4 text-base font-semibold text-white bg-blue-400 rounded-full shadow-lg hover:shadow-xl hover:bg-blue-500 transition-all duration-300"
-              >
-                Get a FREE quote
-              </motion.button>
-            </Link>
-          </motion.div>
+          ))}
         </div>
       </div>
     </section>

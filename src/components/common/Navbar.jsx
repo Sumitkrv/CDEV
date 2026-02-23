@@ -17,7 +17,6 @@ export function NavBar({ className }) {
   const items = [
     { name: "Home", url: "/", icon: Home },
     { name: "About", url: "/about", icon: Info },
-    { name: "Models", url: "/models", icon: Bike },
     { name: "Contact", url: "/contact", icon: Mail },
   ];
 

@@ -35,32 +35,12 @@ const ContactForm = () => {
 
   return (
     <section className="relative py-20 md:py-28 bg-white overflow-hidden">
-      {/* Background Decoration */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0D9488]/5 via-transparent to-[#14B8A6]/5" />
-      <div className="absolute top-20 right-10 w-64 h-64 bg-[#0D9488]/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-[#14B8A6]/10 rounded-full blur-3xl" />
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-5xl mx-auto">
-          {/* Header */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12 md:mb-16"
-          >
-            <span className="inline-block px-4 py-1.5 bg-[#0D9488]/8 text-[#0D9488] text-sm font-semibold tracking-wide rounded-full mb-6">
-              GET IN TOUCH
-            </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1A3A36] mb-6 leading-tight">
-              Let's Start a Conversation
-            </h2>
-            <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-              Have questions about our electric vehicles? We're here to help you find the perfect solution for your needs.
-            </p>
-          </motion.div>
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0D9488]/4 via-transparent to-[#14B8A6]/4" />
+      <div className="absolute top-20 right-10 w-64 h-64 bg-[#0D9488]/8 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-[#14B8A6]/8 rounded-full blur-3xl" />
 
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-3xl mx-auto">
           {/* Form Container */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
